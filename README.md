@@ -61,7 +61,7 @@ fin-trading-bot/
 ├── run_backtest.py
 ├── run_backtest0.py
 └── run_live.py
-
+```
 ---
 
 ## ⚙️ Setup
@@ -70,7 +70,7 @@ fin-trading-bot/
 pip install -r requirements.txt
 cp .env.example .env
 # Fill in your Binance API keys
-
+```
 
 
 ## 📈 Running a Backtest
