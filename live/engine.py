@@ -45,9 +45,9 @@ class LiveEngine:
                 order.execution_price = snapshot.close
                 order.timestamp = snapshot.timestamp
 
-                trade = self.executor.submit_order(order)  # ✅ Capture result
+                trade = self.executor.submit_order(order)
 
-                if trade:  # ✅ Only if trade executed
+                if trade:
                     self.broker.record_trade(trade)
                     self.logger.log_trade(trade, self.broker)
 

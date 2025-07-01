@@ -27,8 +27,8 @@ class Order:
     execution_price: Optional[Decimal] = None
     leverage: Decimal = Decimal("1")
     stop_price: Optional[Decimal] = None  # For STOP/STOP_LIMIT
-    take_profit: Optional[Decimal] = None  # ✅ Add this line
-    iceberg: Optional[Decimal] = None  # Support iceberg orders
+    take_profit: Optional[Decimal] = None
+    iceberg: Optional[Decimal] = None
     status: OrderStatus = OrderStatus.PENDING
     timestamp: datetime = field(default_factory=datetime.utcnow)
     client_tag: Optional[str] = None
@@ -60,7 +60,7 @@ class Position:
     average_entry_price: Decimal
     side: Side
     leverage: Decimal = Decimal("1")
-    margin: Optional[Decimal] = None  # ✅ Add this!
+    margin: Optional[Decimal] = None
     stop_loss: Optional[Decimal] = None
     take_profit: Optional[Decimal] = None
 

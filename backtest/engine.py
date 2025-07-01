@@ -19,7 +19,7 @@ class BacktestEngine:
         self.executor = MockExecutor()
         self.broker = Broker(account_balance=account_balance)
         self.executor.broker = self.broker 
-        self.strategy.broker = self.broker  # 👈 patch broker reference
+        self.strategy.broker = self.broker
         self.loader = SparkOHLCVLoader(symbol=symbol, timeframe=timeframe, start=start, end=end)
         self.logger = TradeLogger()
         self.broker.logger = self.logger
@@ -55,7 +55,7 @@ class BacktestEngine:
                         self.broker.record_trade(trade)
                         self.logger.log_trade(trade, self.broker)
 
-        # ✅ Handle any final closing logic
+        # Handle any final closing logic
         if hasattr(self.strategy, "finalize"):
             final_orders = self.strategy.finalize(snapshot)
             for order in final_orders:
@@ -71,10 +71,10 @@ class BacktestEngine:
         self.broker.last_price = snapshot.close
         self.logger.log_end(self.broker)
 
-        # ✅ Optional indicator plot
+        # Optional indicator plot
         if hasattr(self, "plot") and self.plot:
             self.plot_trades(
-                overlay_indicators={},  # <-- You can move indicators here if needed
+                overlay_indicators={},
                 subplot_indicators={k: v for k, v in self.indicators.items()}
             )
 

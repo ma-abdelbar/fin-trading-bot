@@ -35,13 +35,13 @@ class BitgetExecutor(OrderExecutor):
             symbol = order.asset
             qty = float(order.quantity)
 
-            # ✅ Set leverage first
+            # Set leverage first
             try:
                 self.exchange.set_leverage(int(order.leverage), symbol=symbol)
             except Exception as e:
                 print(f"⚠️ Bitget leverage set failed for {symbol}: {e}")
 
-            # ✅ Submit entry order
+            # Submit entry order
             if order.order_type == OrderType.MARKET:
                 side = 'buy' if order.side == Side.BUY else 'sell'
                 result = self.exchange.create_market_order(symbol, side, qty)
@@ -77,7 +77,7 @@ class BitgetExecutor(OrderExecutor):
             else:
                 print(f"🕒 Bitget LIMIT order submitted (pending): {order.side.name} {qty} @ {order.price}")
 
-            # ✅ SL/TP brackets
+            # SL/TP brackets
             if order.stop_price:
                 try:
                     self.exchange.create_order(

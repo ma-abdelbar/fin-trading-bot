@@ -13,9 +13,8 @@ class MockExecutor(OrderExecutor):
 
     def __init__(self, broker=None):
         self.broker = broker
-        self.orders = {}  # order_id -> Order
-        self.trades = []  # List of Trade objects
-        # self.watched_exits = []  # To track SL/TP conditions
+        self.orders = {}
+        self.trades = []
 
 
     def submit_order(self, order: Order) -> str:
@@ -83,13 +82,11 @@ class MockExecutor(OrderExecutor):
             tp = pos.take_profit
             exit_side = Side.BUY if pos.side == Side.SELL else Side.SELL
 
-            # Log current state
-            # print(f"🔍 Checking SL/TP for {symbol} | SL={sl} TP={tp} | Side={pos.side.name}")
-
+            
             if pos.side == Side.BUY:
                 sl_hit = sl and price_low <= sl
                 tp_hit = tp and price_high >= tp
-            else:  # pos.side == Side.SELL
+            else:
                 sl_hit = sl and price_high >= sl
                 tp_hit = tp and price_low <= tp
 
@@ -102,7 +99,7 @@ class MockExecutor(OrderExecutor):
                     order_type=OrderType.MARKET,
                     execution_price=price_close,
                     timestamp=snapshot.timestamp,
-                    leverage=pos.leverage,  # ✅ This line is key
+                    leverage=pos.leverage,
                     client_tag="tp_exit" if tp_hit else "sl_exit"
                 )
                 self.submit_order(exit_order)

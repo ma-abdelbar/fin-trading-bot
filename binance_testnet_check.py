@@ -27,9 +27,5 @@ try:
     balance = exchange.fetch_balance()
     print("Balance fetched:", balance['total'])
 
-    # print("✅ Placing test order...")
-    # result = exchange.create_market_buy_order('BTC/USDT', 0.001)
-    # print("✅ Order result:", result)
-
 except Exception as e:
     print("❌ ERROR:", str(e))

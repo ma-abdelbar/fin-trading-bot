@@ -53,6 +53,6 @@ class Strategy(ABC):
         """
         notional = account_balance * Decimal(str(size_fraction)) * Decimal(str(leverage))
         quantity = notional / Decimal(str(price))
-        return quantity.quantize(Decimal('0.0001'), rounding=ROUND_DOWN)  # round to 4 decimals (or symbol-specific)
+        return quantity.quantize(Decimal('0.0001'), rounding=ROUND_DOWN)  # round to 4 decimals
 
 

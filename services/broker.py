@@ -12,7 +12,7 @@ class Broker:
     """
 
     def __init__(self, account_balance: Decimal, logger=None):
-        self.account_balance = account_balance  # ✅ Realized PnL rolls into this
+        self.account_balance = account_balance  # Realized PnL rolls into this
         self.positions: Dict[str, Position] = {}
         self.trades: List[Trade] = []
         self.logger = logger
@@ -86,7 +86,7 @@ class Broker:
         self.account_balance += pnl
         margin_released = (closing_qty / pos.quantity) * pos.margin
 
-        # ✅ Equity = balance right after PnL is realized (no unrealized PnL at this point)
+        # Equity = balance right after PnL is realized (no unrealized PnL at this point)
         if self.logger:
             equity = round(self.account_balance, 2)
             self.logger.log_close_position(

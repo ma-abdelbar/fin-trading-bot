@@ -7,7 +7,7 @@ from core.enums import Side, OrderType
 class BracketOrderManager:
     def __init__(self, broker: Broker):
         self.broker = broker
-        self.brackets = {}  # bracket_id -> BracketOrder
+        self.brackets = {}
 
     def create_bracket(self, asset: str, qty: Decimal, entry_price: Decimal, stop_price: Decimal, target_price: Decimal):
         bracket_id = str(uuid.uuid4())
@@ -62,7 +62,6 @@ class BracketOrderManager:
                 continue
 
             if trade.order == bracket.entry_order and not bracket.filled:
-                # Entry filled → submit exits
                 print(f"✅ Entry filled for bracket {bid}. Submitting exits.")
                 self.broker.submit_order(bracket.stop_order)
                 self.broker.submit_order(bracket.target_order)
@@ -70,5 +69,5 @@ class BracketOrderManager:
 
             elif trade.order == bracket.stop_order or trade.order == bracket.target_order:
                 print(f"🚪 Bracket {bid} exited via {'stop' if trade.order == bracket.stop_order else 'target'}")
-                bracket.active = False  # Cancel other? (in real system you'd cancel sibling)
+                bracket.active = False
 

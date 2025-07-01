@@ -161,7 +161,7 @@ class SellBuy(Strategy):
                 side=Side.SELL,
                 quantity=quantity,
                 order_type=OrderType.LIMIT if self.limit_price else OrderType.MARKET,
-                price=self.limit_price,  # ✅ only set for LIMIT
+                price=self.limit_price,  # only set for LIMIT
                 stop_price=Decimal(sl) if sl else None,
                 take_profit=Decimal(tp) if tp else None,
                 leverage=self.leverage,

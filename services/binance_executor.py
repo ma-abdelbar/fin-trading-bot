@@ -37,13 +37,13 @@ class BinanceExecutor(OrderExecutor):
             symbol = order.asset  # e.g. "BTC/USDT"
             qty = float(order.quantity)
 
-            # ✅ Set leverage before any order
+            # Set leverage before any order
             try:
                 self.exchange.set_leverage(int(order.leverage), symbol=symbol)
             except Exception as e:
                 print(f"⚠️ Failed to set leverage {order.leverage}x on {symbol}: {e}")
 
-            # ✅ Submit entry order
+            # Submit entry order
             if order.order_type == OrderType.MARKET:
                 if order.side == Side.BUY:
                     result = self.exchange.create_market_buy_order(symbol, qty)
@@ -85,7 +85,7 @@ class BinanceExecutor(OrderExecutor):
 
                 # Note: You may implement polling for fill later
 
-            # ✅ Attach SL/TP as bracket orders if needed
+            # Attach SL/TP as bracket orders if needed
             if order.stop_price:
                 try:
                     self.exchange.create_order(
