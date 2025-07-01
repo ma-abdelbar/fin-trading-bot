@@ -1,5 +1,5 @@
-ccxt==4.4.71
-matplotlib==3.7.5
-pandas==2.0.3
-pyspark==3.5.5
-python-dotenv==1.1.0
+ccxt
+matplotlib
+pandas
+pyspark
+python-dotenv
