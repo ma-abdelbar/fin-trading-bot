@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('TkAgg')
 from decimal import Decimal
 from domain.simple_rsi_strategy import SimpleRSIStrategy
 from indicators.rsi import RSIIndicator
