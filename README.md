@@ -77,6 +77,9 @@ cp .env.example .env
 
 `python run_backtest.py`
 
+The following figure illustrates a single-day backtest of a mean-reversion RSI strategy applied to BTCUSDT on the 1m timeframe.
+
+![Backtest Example](media/backtest.png)
 
 
 ## 💹 Running Live Trading (Binance Testnet)
